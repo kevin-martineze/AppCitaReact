@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Formulario = ({ pacientes, setPacientes, paciente }) => {
+const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState("");
-  const [propietario, setPropietario] = useState(""); 
+  const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
@@ -41,34 +41,34 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
     setError(false);
 
     // Objeto de Paciente
-    const objetoPaciente = { 
+    const objetoPaciente = {
       nombre,
       propietario,
       email,
       fecha,
-      sintomas
+      sintomas,
     };
 
-    if (paciente.id){
-        // Editando registro
-        objetoPaciente.id = paciente.id
-        console.log(objetoPaciente)
-        console.log(paciente)
-        
+    if (paciente.id) {
+      // Editando registro
+      objetoPaciente.id = paciente.id;
+      const pacientesActualizados = pacientes.map((pacienteState) =>
+        pacienteState.id === paciente.id ? objetoPaciente : pacienteState
+      );
 
+      setPacientes(pacientesActualizados);
+      setPaciente({});
     } else {
-      objetoPaciente.id = generarId()
+      objetoPaciente.id = generarId();
       setPacientes([...pacientes, objetoPaciente]);
     }
 
-    
-
     // Reiniciar el formulario al estado inicial (vacio)
-    setNombre('');
-    setPropietario('');
-    setEmail('');
-    setFecha('');
-    setSintomas('');
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
   };
 
   return (
@@ -175,7 +175,7 @@ const Formulario = ({ pacientes, setPacientes, paciente }) => {
         <input
           type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
-          value= { paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
+          value={paciente.id ? "Editar Paciente" : "Agregar Paciente"}
         />
       </form>
     </div>
