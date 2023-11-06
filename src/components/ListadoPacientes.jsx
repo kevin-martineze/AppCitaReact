@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import Paciente from "./Paciente"
+import PropTypes from "prop-types"
 
-function ListadoPacientes({pacientes, setPaciente, eliminarPaciente}) {
+function ListadoPacientes({pacientes, setPaciente, eliminarPaciente}) { 
 
   useEffect(()=>{
     if(pacientes.length > 0){
@@ -40,4 +41,9 @@ function ListadoPacientes({pacientes, setPaciente, eliminarPaciente}) {
   )
 }
 
+ListadoPacientes.propTypes = {
+  pacientes: PropTypes.array.isRequired,
+  setPaciente: PropTypes.func.isRequired,
+  eliminarPaciente: PropTypes.func.isRequired,
+};
 export default ListadoPacientes

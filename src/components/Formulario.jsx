@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
+import PropTypes from "prop-types";
 
 const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState("");
@@ -7,6 +8,13 @@ const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
+  
+  Formulario.propTypes = {
+    pacientes: PropTypes.array.isRequired,
+    setPacientes: PropTypes.func.isRequired,
+    paciente: PropTypes.object.isRequired,
+    setPaciente: PropTypes.func.isRequired,
+  };
 
   const [error, setError] = useState(false);
 

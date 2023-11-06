@@ -4,7 +4,8 @@ import Header from "./components/Header";
 import ListadoPacientes from "./components/ListadoPacientes";
 
 function App() {
-  const [pacientes, setPacientes] = useState([]);
+  const INITIAL = JSON.parse(localStorage.getItem('pacientes')) ?? [];
+  const [pacientes, setPacientes] = useState(INITIAL);
   const [paciente, setPaciente] = useState({});
 
   useEffect(()=> {
